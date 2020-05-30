@@ -1,6 +1,6 @@
 /* =================================
 ------------------------------------
-	Riddle - Portfolio
+	Civic - CV Resume
 	Version: 1.0
  ------------------------------------ 
  ====================================*/
@@ -17,25 +17,10 @@ $(window).on('load', function() {
 	$(".loader").fadeOut(); 
 	$("#preloder").delay(400).fadeOut("slow");
 
-	if($('.portfolios-area').length > 0 ) {
-		var containerEl = document.querySelector('.portfolios-area');
-		var mixer = mixitup(containerEl);
-	}
-
 });
 
 
 (function($) {
-
-	/*------------------
-		Navigation
-	--------------------*/
-	$('.nav-switch').on('click', function(event) {
-		$('.main-menu').slideToggle(400);
-		event.preventDefault();
-	});
-
-
 
 	/*------------------
 		Background set
@@ -46,47 +31,53 @@ $(window).on('load', function() {
 	});
 
 
-
-	/*----------------------
-		Portfolio layout
-	------------------------*/
-	var port_fi =  $('.portfolios-area .first-item'),
-		port_si =  $('.portfolios-area .second-item'),
-		port_intro_h =  $('.portfolio-intro').innerHeight();
-
-	if ($(window).width() > 991) {
-		port_fi.appendTo('.portfolio-intro');
-		port_si.find('.portfolio-item').height(port_intro_h + 601);
-	}
-
-	$('.portfolio-item.pi-style2').each(function() {
-		var pi_width = $(this).width();
-		$(this).height(pi_width + 50);
+	$('.review-slider').owlCarousel({
+		loop: true,
+		nav: false,
+		dots: true,
+		items: 1,
+		autoplay: true
 	});
 
+
+
+	$('.progress-bar-style').each(function() {
+		var progress = $(this).data("progress");
+		var prog_width = progress + '%';
+		if (progress <= 100) {
+			$(this).append('<div class="bar-inner" style="width:' + prog_width + '"><span>' + prog_width + '</span></div>');
+		}
+		else {
+			$(this).append('<div class="bar-inner" style="width:100%"><span>' + prog_width + '</span></div>');
+		}
+	});
+
+
+	$('.lan-prog').each(function() {
+		var progress = $(this).data("lanprogesss");
+		var ele      = '<span></span>';
+		var ele_fade = '<span class="fade-ele"></span>';
+		
+		for (var i = 1; i <= 5; i++) {
+			if(i <= progress){
+				$(this).append(ele);
+			} else {
+				$(this).append(ele_fade);
+			}
+		}
+	});
 
 
 	/*------------------
 		Popup
 	--------------------*/
-	$('.portfolio-item').magnificPopup({
+	$('.portfolio-item .port-pic').magnificPopup({
 		type: 'image',
 		mainClass: 'img-popup-warp',
-		removalDelay: 400,
+		removalDelay: 500,
 	});
 
 
-	/*------------------
-		Accordions
-	--------------------*/
-	$('.panel-link').on('click', function (e) {
-		$('.panel-link').parent('.panel-header').removeClass('active');
-		var $this = $(this).parent('.panel-header');
-		if (!$this.hasClass('active')) {
-			$this.addClass('active');
-		}
-		e.preventDefault();
-	});
 
 
 if($().circleProgress){
@@ -94,35 +85,56 @@ if($().circleProgress){
 	//Set progress circle 1
 	$("#progress1").circleProgress({
 		value: 0.75,
-		size: 146,
-		thickness: 3,
-		fill: "#979797",
+		size: 175,
+		thickness: 2,
+		fill: "#40424a",
 		emptyFill: "rgba(0, 0, 0, 0)"
 	});
 	//Set progress circle 2
 	$("#progress2").circleProgress({
 		value: 0.83,
-		size: 146,
-		thickness: 3,
-		fill: "#979797",
+		size: 175,
+		thickness: 2,
+		fill: "#40424a",
 		emptyFill: "rgba(0, 0, 0, 0)"
 	});
-	//Set progress circle 3
+
+	//Set progress circle white
 	$("#progress3").circleProgress({
-		value: 0.25,
-		size: 146,
-		thickness: 3,
-		fill: "#979797",
+		value: 0.75,
+		size: 175,
+		thickness: 2,
+		fill: "#ffffff",
 		emptyFill: "rgba(0, 0, 0, 0)"
 	});
-	//Set progress circle 4
+
+	//Set progress circle white
 	$("#progress4").circleProgress({
-		value: 0.95,
-		size: 146,
-		thickness: 3,
-		fill: "#979797",
+		value: 0.83,
+		size: 175,
+		thickness: 2,
+		fill: "#ffffff",
+		emptyFill: "rgba(0, 0, 0, 0)"
+	});
+
+	//Set progress circle skyblue
+	$("#progress5").circleProgress({
+		value: 0.75,
+		size: 175,
+		thickness: 2,
+		fill: "#009fff",
+		emptyFill: "rgba(0, 0, 0, 0)"
+	});
+
+	//Set progress circle skyblue
+	$("#progress6").circleProgress({
+		value: 0.83,
+		size: 175,
+		thickness: 2,
+		fill: "#009fff",
 		emptyFill: "rgba(0, 0, 0, 0)"
 	});
 }
 
 })(jQuery);
+
