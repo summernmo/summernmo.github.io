@@ -44,3 +44,6 @@ ul.posts li {
     margin: 0;
     text-align: right;  
 }
+.navbar {
+    float: right;
+}
